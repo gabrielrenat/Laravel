@@ -28,12 +28,6 @@ class Push extends Component
     public function render()
     {
         $avisoUsers = AvisoUser::all();
-        foreach ($avisoUsers as $avisoUser) {
-            array_push($this->userId, $avisoUser->user_id);
-            array_push($this->avisoId, $avisoUser->aviso_id);
-        }
-        $this->userId = array_unique($this->userId);
-        $this->avisoId = array_unique($this->avisoId);
         $users = User::whereNotNull('token')->paginate(10);
         $avisos = Aviso::paginate(10);
         return view('livewire.push', compact('avisos', 'users'))
